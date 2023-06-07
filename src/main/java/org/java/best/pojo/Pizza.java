@@ -6,6 +6,8 @@ package org.java.best.pojo;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +34,7 @@ public class Pizza {
 	private int price;
 	
 	@OneToMany(mappedBy = "pizza")
+	@JsonManagedReference
 	private List<Offerta> offerte;
 	
 	@ManyToMany

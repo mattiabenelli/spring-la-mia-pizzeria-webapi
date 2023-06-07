@@ -22,7 +22,8 @@ public class AuthConfiguration {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    
 		return 
-			http.authorizeHttpRequests(a -> a
+			http.csrf(c -> c.disable())
+				.authorizeHttpRequests(a -> a
 			        .requestMatchers("/users/**").hasAnyAuthority("USER", "ADMIN")
 			        .requestMatchers("/pizza/**").hasAnyAuthority("USER", "ADMIN")
 			        .requestMatchers("/offerte/**").hasAuthority("ADMIN")
