@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body th:object="${pizza}">
+	<h1>Pizza</h1>
+	<h3>[[ *{nome} ]]</h3>
+	<h4>Descrizione: [[ *{descrizione} ]]</h4>
+	<img th:src="*{foto}">
+	<h4>[[ *{foto} ]]</h4>
+	<h4>Prezzo: [[ *{price} ]]</h4>
+	<a
+		href="/logout"
+	>LOGOUT</a> 
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>pizzas</h1>
+	 <form th:action="@{/pizza/by/nome}" method="POST">
+		<label>Nome</label>
+		<input type="text" name="nome" th:value="${nome}">
+		<br>
+		<input type="submit" value="Search">
+	</form>
+	<a th:href="@{/offerte}"
+		sec:authorize="hasAuthority('ADMIN')"
+	>
+		Visualizza offerte attive
+	</a>
+	<a th:href="@{/pizza/create}"
+		sec:authorize="hasAuthority('ADMIN')"
+	>Aggiungi nuova pizza</a>
+	 <ul>
+		<li
+			th:each="pizza : ${pizzas}"
+			th:object="${pizza}"
+		>
+			<a th:href="@{/pizza/{id} (id=*{id})}">
+				[[ *{nome} ]]
+			</a>
+			<a th:href="@{/pizza/delete/{id} (id=*{id})}"
+				sec:authorize="hasAuthority('ADMIN')"
+			>
+				-DELETE
+			</a>
+			<a th:href="@{/pizza/update/{id} (id=*{id})}"
+				sec:authorize="hasAuthority('ADMIN')"
+			>
+				-UPDATE
+			</a>
+		</li>
+	</ul>
+	<a
+		href="/logout"
+	>LOGOUT</a>
+</body>
+</html>

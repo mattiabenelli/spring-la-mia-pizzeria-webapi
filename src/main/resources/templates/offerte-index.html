@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body th:object="${pizza}">
+	<h1>Offerte</h1>
+	<a th:href="@{/offerte/create}">Inserisci una nuova offerta</a>
+	 <ul>
+		<li
+			th:each="offerta : ${offerte}"
+			th:object="${offerta}"
+		>
+			<h1>[[ *{nomeOfferta} ]]</h1>
+			<h3>Durata offerta  [[ *{dataInizio} ]]  [[ *{dataFine} ]] </h3> 
+			<h3>Sconto: [[ *{sconto} ]]%</h3>
+			<h3>Prezzo scontato: [[ *{pizza.price} ]] - [[ *{sconto} ]]% = [[ *{PrezzoScontanto} ]]</h3>
+			<a th:href="@{offerte/update/{id} (id=*{id})}">
+				-UPDATE
+			</a>
+		</li>
+	</ul>
+	
+</body>
+</html>

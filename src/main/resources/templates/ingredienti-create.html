@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body th:object="${ingrediente}">
+	<h1>Aggiungi un ingrediente</h1>
+	<form method="POST">
+		<label>Nome</label>
+		<input type="text" name="nomeIngrediente" th:value="*{nomeIngrediente}">
+		<br>
+		<input type="submit" value="create">
+	</form>
+</body>
+</html>

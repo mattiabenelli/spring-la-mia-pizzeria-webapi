@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body th:object="${offerta}">
+	
+	<h1>Crea offerta:</h1>
+	<form method="POST">
+		<label>data inizio offerta</label>
+		<input type="date" name="dataInizio" th:value="*{dataInizio}">
+		<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('dataInizio')}"
+			>
+				[[ ${errors.getFieldError('dataInizio').defaultMessage} ]]
+		</label>
+		
+		<br>
+		<label>data fine offerta</label>
+		<input type="date" name="dataFine" th:value="*{dataFine}">
+		<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('dataFine')}"
+			>
+				[[ ${errors.getFieldError('dataFine').defaultMessage} ]]
+		</label>
+		
+		<br>
+		<label>nome offerta</label>
+		<input type="text" name="nomeOfferta" th:value="*{nomeOfferta}">
+		<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('nomeOfferta')}"
+			>
+				[[ ${errors.getFieldError('nomeOfferta').defaultMessage} ]]
+		</label>
+			
+		<br>
+		<label>sconto</label>
+		<input type="number" name="sconto" th:value="*{sconto}">
+		<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('sconto')}"
+			>
+				[[ ${errors.getFieldError('sconto').defaultMessage} ]]
+		</label>
+		<br>
+		<select name="pizza">
+			<option 
+				th:each="pizza : ${pizzas}"
+				th:object="${pizza}" 
+				th:value="*{id}"
+			>
+				[[ *{nome} ]]
+			</option>
+		</select>
+		<br>
+		<input type="submit" value="create">
+	</form>
+
+</body>
+</html>
