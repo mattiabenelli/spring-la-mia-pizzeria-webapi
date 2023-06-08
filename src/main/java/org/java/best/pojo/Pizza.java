@@ -6,8 +6,9 @@ package org.java.best.pojo;
 import java.util.Arrays;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,8 +34,7 @@ public class Pizza {
 	@Min(value = 1, message = "Il prezzo non può essere minore di 0")
 	private int price;
 	
-	@OneToMany(mappedBy = "pizza")
-	@JsonManagedReference
+	@OneToMany(mappedBy = "pizza", cascade = CascadeType.REMOVE)
 	private List<Offerta> offerte;
 	
 	@ManyToMany
@@ -93,7 +93,7 @@ public class Pizza {
 	public List<Ingrediente> getIngredienti() {
 		return ingredienti;
 	}
-	
+	@JsonSetter
 	public void setIngredienti(List<Ingrediente> ingredienti) {
 		this.ingredienti = ingredienti;
 	}

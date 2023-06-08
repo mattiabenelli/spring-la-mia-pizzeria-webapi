@@ -31,4 +31,5 @@ public class ServiceIngrediente {
 		
 		ingredienteRepo.delete(ingrediente);
 	}
+	
 }
